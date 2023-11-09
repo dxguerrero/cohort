@@ -38,6 +38,7 @@ func main() {
 	router := gin.Default()
 	router.GET("/swes", getSwes)
 	router.GET("/swes/:name", getSweByName)
+	router.GET("/swes/language/:language", getSwesByLanguage)
 	router.POST("/swes", postSwe)
 	router.DELETE("/swes/:name", deleteSWE)
 	router.PUT("/swes/:name", updateSwe)
@@ -80,6 +81,28 @@ func getSweByName(c *gin.Context) {
 	}
 
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "SWE not found"})
+}
+
+// getSwesByLanguage locates SWEs apprentice whose language value matches
+// the language parameter sent by the client, adds them to a slice
+// and returns that slice
+func getSwesByLanguage(c *gin.Context) {
+	language := c.Param("language")
+	var langSwes []swe
+
+	// Loop over the list of SWEs, looking for 
+	// a SWE whos Name value matches the parameter
+	for _, s := range swes {
+		if s.Language == language {
+			langSwes = append(langSwes, s)
+		}
+	}
+
+	if langSwes != nil {
+		c.IndentedJSON(http.StatusOK, langSwes)
+	} else {
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No SWES are currently learning that language"})
+	}
 }
 
 // deleteSwe locates a SWE apprentice whose name value matches 
