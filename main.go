@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// swe represents data about a SWE apprentice
 type swe struct {
 	ID string `json:"id"`
 	Name string `json:"name"`
@@ -12,6 +13,7 @@ type swe struct {
 	Hub string `json:"hub"`
 }
 
+// slice to seed SWE apprentices
 var swes = []swe{
 	{ID: "1", Name: "Aaron", Language: "Go", Hub: "AUS"},
 	{ID: "2", Name: "Arwa", Language: "TypeScript", Hub: "CHI"},
@@ -35,13 +37,31 @@ var swes = []swe{
 func main() {
 	router := gin.Default()
 	router.GET("/swes", getSwes)
+	router.POST("/swes", postSwe)
 
 	router.Run("localhost:8080")
 }
 
+// getSwes responds with the list of all SWE apprentices
 func getSwes(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, swes)
 }
+
+// postSwes adds a SWE from JSON recieved in the request body
+func postSwe(c *gin.Context) {
+	var newSwe swe
+
+	//Call BindJSON to bing the received JSON to newSWE
+	if err := c.BindJSON(&newSwe); err != nil {
+		return
+	} 
+	
+	// Add the new SWE to the slice
+	swes = append(swes, newSwe)
+	c.IndentedJSON(http.StatusCreated, newSwe)
+}
+
+
 
 
 
