@@ -1,7 +1,8 @@
 package main
 
 import (
-
+	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 type swe struct {
@@ -17,7 +18,7 @@ var swes = []swe{
 	{ID: "3", Name: "Axel", Language: "C++", Hub: "NYC"},
 	{ID: "4", Name: "Courtlyn", Language: "Kotlin", Hub: "ATL"},
 	{ID: "5", Name: "Daniel", Language: "Go", Hub: "ATL"},
-	{ID: "6", Name: "Daniela", Language: "TypeScript", Hub: "CHI"},\
+	{ID: "6", Name: "Daniela", Language: "TypeScript", Hub: "CHI"},
 	{ID: "7", Name: "Dominique", Language: "Java", Hub: "AUS"},
 	{ID: "8", Name: "Jazmin", Language: "Java", Hub: "CHI"},
 	{ID: "9", Name: "Lavon", Language: "C++", Hub: "ATL"},
@@ -32,6 +33,15 @@ var swes = []swe{
 
 
 func main() {
+	router := gin.Default()
+	router.GET("/swes", getSwes)
 
+	router.Run("localhost:8080")
 }
+
+func getSwes(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, swes)
+}
+
+
 
