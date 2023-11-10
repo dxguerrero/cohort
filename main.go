@@ -2,15 +2,18 @@ package main
 
 import (
 	"net/http"
+
+	"example.com/cohort/controllers"
+	"example.com/cohort/initializers"
 	"github.com/gin-gonic/gin"
 )
 
 // swe represents data about a SWE apprentice
 type swe struct {
-	ID string `json:"id"`
-	Name string `json:"name"`
+	ID       string `json:"id"`
+	Name     string `json:"name"`
 	Language string `json:"language"`
-	Hub string `json:"hub"`
+	Hub      string `json:"hub"`
 }
 
 // slice to seed SWE apprentices
@@ -33,8 +36,13 @@ var swes = []swe{
 	{ID: "16", Name: "Zoe", Language: "Java", Hub: "AUS"},
 }
 
+func init() {
+	initializers.LoadEnvVariables()
+	initializers.ConnectToDB()
+}
 
 func main() {
+
 	router := gin.Default()
 	router.GET("/swes", getSwes)
 	router.GET("/swes/:name", getSweByName)
@@ -43,7 +51,9 @@ func main() {
 	router.DELETE("/swes/:name", deleteSWE)
 	router.PUT("/swes/:name", updateSwe)
 
-	router.Run("localhost:8080")
+	router.POST("/apprentices", controllers.CreateApprentice)
+
+	router.Run()
 }
 
 // getSwes responds with the list of all SWE apprentices
@@ -58,20 +68,20 @@ func postSwe(c *gin.Context) {
 	//Call BindJSON to bind the received JSON to newSWE
 	if err := c.BindJSON(&newSwe); err != nil {
 		return
-	} 
-	
+	}
+
 	// Add the new SWE to the slice
 	swes = append(swes, newSwe)
 	c.IndentedJSON(http.StatusCreated, newSwe)
 }
 
 // getSweByName locates SWE apprentice whose name value matches
-// the name parameter sent by the client, then returns that SWE 
+// the name parameter sent by the client, then returns that SWE
 // as a response
 func getSweByName(c *gin.Context) {
 	name := c.Param("name")
 
-	// Loop over the list of SWEs, looking for 
+	// Loop over the list of SWEs, looking for
 	// a SWE whos Name value matches the parameter
 	for _, s := range swes {
 		if s.Name == name {
@@ -90,7 +100,7 @@ func getSwesByLanguage(c *gin.Context) {
 	language := c.Param("language")
 	var langSwes []swe
 
-	// Loop over the list of SWEs, looking for 
+	// Loop over the list of SWEs, looking for
 	// a SWE whos Name value matches the parameter
 	for _, s := range swes {
 		if s.Language == language {
@@ -105,7 +115,7 @@ func getSwesByLanguage(c *gin.Context) {
 	}
 }
 
-// deleteSwe locates a SWE apprentice whose name value matches 
+// deleteSwe locates a SWE apprentice whose name value matches
 // the name parameter sent by the client, and removes it from the
 // swes slice
 func deleteSWE(c *gin.Context) {
@@ -129,8 +139,8 @@ func deleteSWE(c *gin.Context) {
 // passed into request
 func updateSwe(c *gin.Context) {
 	name := c.Param("name")
-	var updatedSwe swe 
-	
+	var updatedSwe swe
+
 	if err := c.BindJSON(&updatedSwe); err != nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "There was an error updating the SWE"})
 	}
