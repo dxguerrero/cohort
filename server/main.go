@@ -2,8 +2,8 @@ package main
 
 import (
 	
-	"example.com/cohort/controllers"
-	"example.com/cohort/initializers"
+	"github.com/dxguerrero/cohort/controllers"
+	"github.com/dxguerrero/cohort/initializers"
 	"github.com/gin-gonic/gin"
 )
 

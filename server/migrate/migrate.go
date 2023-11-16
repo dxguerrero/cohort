@@ -1,8 +1,8 @@
 package main
 
 import (
-	"example.com/cohort/initializers"
-	"example.com/cohort/models"
+	"github.com/dxguerrero/cohort/initializers"
+	"github.com/dxguerrero/cohort/models"
 )
 
 func init () {

@@ -2,8 +2,8 @@ package controllers
 
 import (
 
-	"example.com/cohort/initializers"
-	"example.com/cohort/models"
+	"github.com/dxguerrero/cohort/initializers"
+	"github.com/dxguerrero/cohort/models"
 	"github.com/gin-gonic/gin"
 )
 

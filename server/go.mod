@@ -1,4 +1,4 @@
-module example.com/cohort
+module github.com/dxguerrero/cohort
 
 go 1.21.3
 
