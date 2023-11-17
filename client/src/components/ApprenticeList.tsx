@@ -10,11 +10,13 @@ type ApprenticeListProps = {
     Img: string;
   }[];
   setAreApprenticesVisible: (b: boolean) => void;
+  fetchApprentice: (name: string) => void;
 };
 
 export const ApprenticeList = ({
   apprentices,
   setAreApprenticesVisible,
+  fetchApprentice,
 }: ApprenticeListProps) => {
   return (
     <>
@@ -28,7 +30,7 @@ export const ApprenticeList = ({
             Img: string;
           }
         ) => (
-          <Apprentice apprentice={apprentice} key={apprentice.ID} />
+          <Apprentice apprentice={apprentice} key={apprentice.ID} setAreApprenticesVisible={setAreApprenticesVisible} fetchApprentice={fetchApprentice} />
         )
       )}
     </>
