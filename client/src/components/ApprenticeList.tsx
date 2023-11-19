@@ -3,7 +3,7 @@ import { Apprentice } from "./Apprentice";
 
 type ApprenticeListProps = {
   apprentices: {
-    ID: number
+    ID: number;
     Name: string;
     Language: string;
     Hub: string;
@@ -21,16 +21,19 @@ export const ApprenticeList = ({
   return (
     <>
       {apprentices.map(
-        (
-          apprentice: {
-            ID: number
-            Name: string;
-            Language: string;
-            Hub: string;
-            Img: string;
-          }
-        ) => (
-          <Apprentice apprentice={apprentice} key={apprentice.ID} setAreApprenticesVisible={setAreApprenticesVisible} fetchApprentice={fetchApprentice} />
+        (apprentice: {
+          ID: number;
+          Name: string;
+          Language: string;
+          Hub: string;
+          Img: string;
+        }) => (
+          <Apprentice
+            apprentice={apprentice}
+            key={apprentice.ID}
+            setAreApprenticesVisible={setAreApprenticesVisible}
+            fetchApprentice={fetchApprentice}
+          />
         )
       )}
     </>
