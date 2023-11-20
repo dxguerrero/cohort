@@ -3,6 +3,10 @@ import "./App.css";
 import { ApprenticeList } from "./components/ApprenticeList";
 import { ApprenticeView } from "./components/ApprenticeView";
 
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
 function App() {
   const [areApprenticesVisible, setAreApprenticesVisible] = useState(true);
   const [apprentices, setApprentices] = useState([]);
@@ -51,24 +55,29 @@ function App() {
   }, []);
 
   return (
+    <>
     <main>
+    <Navbar bg="primary" data-bs-theme="dark">
+      <Container>
+        <Navbar.Brand>Cohort App</Navbar.Brand>
+      </Container>
+    </Navbar>
       {!areApprenticesVisible && currentApprentice ? (
         <>
-          <ApprenticeView currentApprentice={currentApprentice} />
-          <button
+          <ApprenticeView currentApprentice={currentApprentice} fetchApprentice={fetchApprentice} setAreApprenticesVisible={setAreApprenticesVisible} />
+          <Button
             onClick={() => {
               setAreApprenticesVisible(true);
             }}
           >
             Back
-          </button>
+          </Button>
         </>
       ) : (
         ""
       )}
       {areApprenticesVisible && (
         <>
-          <h1>Cohort App</h1>
           <ApprenticeList
             apprentices={apprentices}
             setAreApprenticesVisible={setAreApprenticesVisible}
@@ -77,6 +86,7 @@ function App() {
         </>
       )}
     </main>
+    </>
   );
 }
 

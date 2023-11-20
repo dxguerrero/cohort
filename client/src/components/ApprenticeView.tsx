@@ -1,14 +1,17 @@
 import React from "react";
 
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
+
 type ApprenticeViewProps = {
   currentApprentice: {
-    Name: string
-    Language: string
-    Hub: string
-    Img: string
-  }
-  setAreApprenticesVisible: (b: boolean) => void
-  fetchApprentice: (name: string) => void
+    Name: string;
+    Language: string;
+    Hub: string;
+    Img: string;
+  };
+  setAreApprenticesVisible: (b: boolean) => void;
+  fetchApprentice: (name: string) => void;
 };
 
 export const ApprenticeView = ({
@@ -16,13 +19,22 @@ export const ApprenticeView = ({
   fetchApprentice,
   setAreApprenticesVisible,
 }: ApprenticeViewProps) => {
-    return (
-        <div className="apprentice-view">
-            <img src={currentApprentice.Img} alt={currentApprentice.Name} />
-            <h3>{currentApprentice.Name}</h3>
-            <p>{currentApprentice.Hub}</p>
-            <h2>{currentApprentice.Language}</h2>
-
-        </div>
-    )
+  return (
+    <Card style={{ width:"30rem" }} className="border border-primary">
+      <Image
+e       src={currentApprentice.Img}
+        alt={currentApprentice.Name}
+        height={400}
+        width={400}
+        roundedCircle
+        className="d-block mx-auto p-2"
+      />
+      <Card.Body>
+        <Card.Title>{currentApprentice.Name}</Card.Title>
+        <Card.Text>Apprentice Hub: {currentApprentice.Hub}</Card.Text>
+      </Card.Body>
+      <p>{currentApprentice.Hub}</p>
+      <h2>{currentApprentice.Language}</h2>
+    </Card>
+  );
 };
