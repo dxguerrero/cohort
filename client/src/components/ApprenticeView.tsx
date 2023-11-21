@@ -2,6 +2,7 @@ import React from "react";
 
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button"
 
 type ApprenticeViewProps = {
   currentApprentice: {
@@ -22,7 +23,7 @@ export const ApprenticeView = ({
   return (
     <Card style={{ width:"30rem" }} className="border border-primary">
       <Image
-e       src={currentApprentice.Img}
+       src={currentApprentice.Img}
         alt={currentApprentice.Name}
         height={400}
         width={400}
@@ -32,9 +33,9 @@ e       src={currentApprentice.Img}
       <Card.Body>
         <Card.Title>{currentApprentice.Name}</Card.Title>
         <Card.Text>Apprentice Hub: {currentApprentice.Hub}</Card.Text>
+        <Card.Text>Language Learned: {currentApprentice.Language}</Card.Text>
+        <Button>Update</Button>
       </Card.Body>
-      <p>{currentApprentice.Hub}</p>
-      <h2>{currentApprentice.Language}</h2>
     </Card>
   );
 };

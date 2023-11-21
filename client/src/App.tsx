@@ -56,36 +56,42 @@ function App() {
 
   return (
     <>
-    <main>
-    <Navbar bg="primary" data-bs-theme="dark">
-      <Container>
-        <Navbar.Brand>Cohort App</Navbar.Brand>
-      </Container>
-    </Navbar>
-      {!areApprenticesVisible && currentApprentice ? (
-        <>
-          <ApprenticeView currentApprentice={currentApprentice} fetchApprentice={fetchApprentice} setAreApprenticesVisible={setAreApprenticesVisible} />
-          <Button
-            onClick={() => {
-              setAreApprenticesVisible(true);
-            }}
-          >
-            Back
-          </Button>
-        </>
-      ) : (
-        ""
-      )}
-      {areApprenticesVisible && (
-        <>
-          <ApprenticeList
-            apprentices={apprentices}
-            setAreApprenticesVisible={setAreApprenticesVisible}
-            fetchApprentice={fetchApprentice}
-          />
-        </>
-      )}
-    </main>
+      <main>
+        <Navbar bg="primary" data-bs-theme="dark">
+          <Container>
+            <Navbar.Brand>Cohort App</Navbar.Brand>
+            {!areApprenticesVisible && (
+              <Button
+                onClick={() => {
+                  setAreApprenticesVisible(true);
+                }}
+              >
+                <span className="bi bi-arrow-left-circle"></span>
+              </Button>
+            )}
+          </Container>
+        </Navbar>
+        {!areApprenticesVisible && currentApprentice ? (
+          <>
+            <ApprenticeView
+              currentApprentice={currentApprentice}
+              fetchApprentice={fetchApprentice}
+              setAreApprenticesVisible={setAreApprenticesVisible}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        {areApprenticesVisible && (
+          <>
+            <ApprenticeList
+              apprentices={apprentices}
+              setAreApprenticesVisible={setAreApprenticesVisible}
+              fetchApprentice={fetchApprentice}
+            />
+          </>
+        )}
+      </main>
     </>
   );
 }

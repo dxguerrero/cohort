@@ -23,13 +23,13 @@ export const Apprentice = ({
   setAreApprenticesVisible,
   fetchApprentice,
 }: ApprenticeProps) => {
-  async function handleClick(apprentice: {}): Promise<any> {
+  async function handleClick(apprentice: {Name:string;}): Promise<any> {
     await fetchApprentice(apprentice.Name);
     setAreApprenticesVisible(false);
   }
 
   return (
-    <Card className="border border-primary" style={{ width: '40rem'}}>
+    <Card className="border border-primary card-margin-top-bottom" style={{ width: '40rem'}}>
       <Row>
         <Stack direction="horizontal" gap={3}>
         <Col>

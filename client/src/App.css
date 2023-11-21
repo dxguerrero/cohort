@@ -4,4 +4,14 @@
   text-align: center;
 }
 
+.bi-arrow-left-circle {
+  color: #ffffff;
+}
+
+.card-margin-top-bottom {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
