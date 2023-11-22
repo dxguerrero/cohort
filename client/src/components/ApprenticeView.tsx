@@ -17,8 +17,8 @@ type ApprenticeViewProps = {
 
 export const ApprenticeView = ({
   currentApprentice,
-  fetchApprentice,
-  setAreApprenticesVisible,
+  // fetchApprentice,
+  // setAreApprenticesVisible,
 }: ApprenticeViewProps) => {
   return (
     <Card style={{ width:"30rem" }} className="border border-primary">
