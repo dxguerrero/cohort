@@ -17,7 +17,7 @@ func main() {
 	router := gin.Default()
 
 	config := cors.Config{
-        AllowOrigins: []string{"http://localhost:5173"}, // Replace with your front-end origin
+        AllowOrigins: []string{"https://cohort.onrender.com/"}, // Replace with your front-end origin
         AllowMethods: []string{"GET", "PUT", "POST", "DELETE", "OPTIONS"},
         AllowHeaders: []string{"Origin", "Authorization", "Content-Type"},
         ExposeHeaders: []string{"Content-Length", "Cache-Control"},
@@ -28,7 +28,7 @@ func main() {
 	router.Use(cors.New(config))
 
 	router.POST("/apprentices", controllers.CreateApprentice)
-	router.GET("/apprentices", controllers.GetAllApprentices)
+	router.GET("/", controllers.GetAllApprentices)
 	router.GET("/apprentices/:name", controllers.GetApprentice)
 	router.PUT("/apprentices/:name", controllers.UpdateApprentice)
 	router.DELETE("/apprentices/:name", controllers.ApprencticeDelete)
