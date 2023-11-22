@@ -25,9 +25,11 @@ function App() {
       Img: "",
     });
 
+  const apiURL:string = "https://cohort-app.onrender.com"
+
   async function fetchApprentices() {
     try {
-      const response = await fetch(`http://localhost:3000/apprentices`);
+      const response = await fetch(`${apiURL}/`);
       const apprenticesData = await response.json();
       console.log(apprenticesData);
 
@@ -39,7 +41,7 @@ function App() {
 
   async function fetchApprentice(name: string) {
     try {
-      const response = await fetch(`http://localhost:3000/apprentices/${name}`);
+      const response = await fetch(`${apiURL}/apprentices/${name}`);
       const apprenticeData = await response.json();
       console.log(apprenticeData);
 
