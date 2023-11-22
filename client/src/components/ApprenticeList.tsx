@@ -1,4 +1,3 @@
-import React from "react";
 import { Apprentice } from "./Apprentice";
 
 type ApprenticeListProps = {

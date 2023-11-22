@@ -1,5 +1,3 @@
-import React from "react";
-
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button"
