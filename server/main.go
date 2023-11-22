@@ -1,7 +1,6 @@
 package main
 
 import (
-	
 	"github.com/dxguerrero/cohort/controllers"
 	"github.com/dxguerrero/cohort/initializers"
 	"github.com/gin-gonic/gin"
