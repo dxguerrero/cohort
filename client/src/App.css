@@ -13,5 +13,11 @@
   margin-bottom: 1rem;
 }
 
+.name-hub-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';

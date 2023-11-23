@@ -1,4 +1,5 @@
 import { Apprentice } from "./Apprentice";
+import Card from "react-bootstrap/Card"
 
 type ApprenticeListProps = {
   apprentices: {
@@ -18,7 +19,7 @@ export const ApprenticeList = ({
   fetchApprentice,
 }: ApprenticeListProps) => {
   return (
-    <>
+    <Card className="p-3">
       {apprentices.map(
         (apprentice: {
           ID: number;
@@ -35,6 +36,6 @@ export const ApprenticeList = ({
           />
         )
       )}
-    </>
+    </Card>
   );
 };

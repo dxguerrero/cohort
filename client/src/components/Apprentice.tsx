@@ -28,15 +28,15 @@ export const Apprentice = ({
   }
 
   return (
-    <Card className="border border-primary card-margin-top-bottom" style={{ width: '40rem'}}>
+    <Card className="border border-primary card-margin-top-bottom p-2" style={{ width: '40rem'}}>
       <Row>
         <Stack direction="horizontal" gap={3}>
-        <Col>
+        <Col xs={3}>
           <Image className="p-2" src={apprentice.Img} width={150} height={150} roundedCircle />
         </Col>
-        <Stack gap={1}>
-          <Col xs={5}>
-            <h3 className="p-2">{apprentice.Name}</h3>
+        <Stack gap={1} className="name-hub-container">
+          <Col xs={6}>
+            <h3 className="p-1">{apprentice.Name}</h3>
             <p className="p-1">{apprentice.Hub}</p>
           </Col>
         </Stack>
