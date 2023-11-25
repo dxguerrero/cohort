@@ -1,6 +1,6 @@
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
 
 type ApprenticeViewProps = {
   currentApprentice: {
@@ -15,13 +15,16 @@ type ApprenticeViewProps = {
 
 export const ApprenticeView = ({
   currentApprentice,
-  // fetchApprentice,
-  // setAreApprenticesVisible,
-}: ApprenticeViewProps) => {
+}: // fetchApprentice,
+// setAreApprenticesVisible,
+ApprenticeViewProps) => {
   return (
-    <Card style={{ width:"30rem" }} className="border border-primary">
+    <Card
+      style={{ width: "30rem" }}
+      className="border border-primary card-box-shadow"
+    >
       <Image
-       src={currentApprentice.Img}
+        src={currentApprentice.Img}
         alt={currentApprentice.Name}
         height={400}
         width={400}
@@ -32,7 +35,6 @@ export const ApprenticeView = ({
         <Card.Title>{currentApprentice.Name}</Card.Title>
         <Card.Text>Apprentice Hub: {currentApprentice.Hub}</Card.Text>
         <Card.Text>Language Learned: {currentApprentice.Language}</Card.Text>
-        <Button>Update</Button>
       </Card.Body>
     </Card>
   );

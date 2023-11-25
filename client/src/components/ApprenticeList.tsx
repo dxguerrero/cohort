@@ -19,7 +19,7 @@ export const ApprenticeList = ({
   fetchApprentice,
 }: ApprenticeListProps) => {
   return (
-    <Card className="p-3">
+    <Card className="p-4">
       {apprentices.map(
         (apprentice: {
           ID: number;

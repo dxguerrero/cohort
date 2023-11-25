@@ -62,13 +62,20 @@ function App() {
         <Navbar bg="primary" data-bs-theme="dark">
           <Container>
             <Navbar.Brand>Cohort App</Navbar.Brand>
-            {!areApprenticesVisible && (
+            {!areApprenticesVisible ? (
+              <div class="d-flex justify-content-between">
+              <Button><span><i className="bi bi-pencil"></i></span></Button>
               <Button
                 onClick={() => {
                   setAreApprenticesVisible(true);
                 }}
               >
                 <span className="bi bi-arrow-left-circle"></span>
+              </Button>
+              </div>
+            ) : (
+              <Button>
+                <span><i class="bi bi-plus-circle"></i></span>
               </Button>
             )}
           </Container>

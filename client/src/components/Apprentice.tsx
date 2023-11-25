@@ -28,7 +28,7 @@ export const Apprentice = ({
   }
 
   return (
-    <Card className="border border-primary card-margin-top-bottom p-2" style={{ width: '40rem'}}>
+    <Card className="border border-primary card-margin-top-bottom p-2 card-box-shadow" style={{ width: '40rem'}}>
       <Row>
         <Stack direction="horizontal" gap={3}>
         <Col xs={3}>
