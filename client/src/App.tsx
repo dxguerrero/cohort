@@ -13,6 +13,7 @@ function App() {
   const [apprentices, setApprentices] = useState([]);
   const [addingApprentice, setAddingApprentice] = useState(false);
   const [post, setPost] = useState(false);
+  const [updatingApprentice, setUpdatingApprentice] = useState(false);
 
   type currentApprenticeTypes = {
     Name: string;
@@ -57,6 +58,7 @@ function App() {
   function backToList(): void {
     setAddingApprentice(false);
     setAreApprenticesVisible(true);
+    setPost(true);
   }
 
   useEffect(() => {
@@ -73,7 +75,7 @@ function App() {
             <Navbar.Brand>Cohort App</Navbar.Brand>
             {!areApprenticesVisible ? (
               <div className="d-flex justify-content-between">
-                <Button>
+                <Button onClick={()=>{setUpdatingApprentice(true)}}>
                   <span>
                     <i className="bi bi-pencil"></i>
                   </span>
@@ -95,6 +97,7 @@ function App() {
             )}
           </Container>
         </Navbar>
+
         {addingApprentice && (
           <Modal
             show={addingApprentice}
@@ -125,6 +128,9 @@ function App() {
             <ApprenticeView
               currentApprentice={currentApprentice}
               fetchApprentice={fetchApprentice}
+              updatingApprentice={updatingApprentice}
+              setUpdatingApprentice={setUpdatingApprentice}
+              apiURL={apiURL}
               
             />
           </>

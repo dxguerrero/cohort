@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
+import { UpdateForm } from './UpdateForm';
+
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
+
 // import Button from "react-bootstrap/Button";
 
 type ApprenticeViewProps = {
@@ -9,17 +13,37 @@ type ApprenticeViewProps = {
     Hub: string;
     Img: string;
   };
-  
   fetchApprentice: (name: string) => void;
+  updatingApprentice: boolean;
+  setUpdatingApprentice: (b: boolean) => void;
+  apiURL: string;
 };
 
 export const ApprenticeView = ({
   currentApprentice,
-  // fetchApprentice
+  fetchApprentice,
+  updatingApprentice,
+  setUpdatingApprentice,
+  apiURL
 }: 
 
 ApprenticeViewProps) => {
+
+  useEffect(() => {
+    fetchApprentice(currentApprentice.Name);
+  }, [updatingApprentice])
+
   return (
+    <>
+    {updatingApprentice && (
+      <UpdateForm 
+      currentApprentice={currentApprentice}
+      apiURL={apiURL}
+      setUpdatingApprentice={setUpdatingApprentice}
+      updatingApprentice={updatingApprentice}
+      
+      />
+    )}
     <Card
       style={{ width: "30rem" }}
       className="border border-primary card-box-shadow"
@@ -38,5 +62,6 @@ ApprenticeViewProps) => {
         <Card.Text>Language Learned: {currentApprentice.Language}</Card.Text>
       </Card.Body>
     </Card>
+    </>
   );
 };
