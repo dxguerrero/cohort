@@ -63,7 +63,7 @@ function App() {
           <Container>
             <Navbar.Brand>Cohort App</Navbar.Brand>
             {!areApprenticesVisible ? (
-              <div class="d-flex justify-content-between">
+              <div className="d-flex justify-content-between">
               <Button><span><i className="bi bi-pencil"></i></span></Button>
               <Button
                 onClick={() => {
