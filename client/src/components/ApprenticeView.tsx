@@ -1,6 +1,6 @@
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 
 type ApprenticeViewProps = {
   currentApprentice: {
