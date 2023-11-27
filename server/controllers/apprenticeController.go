@@ -34,9 +34,9 @@ func CreateApprentice(c *gin.Context) {
 }
 
 func GetAllApprentices(c *gin.Context) {
-	// Get apprentices
+	// Get apprentices in alphabetical order
 	var apprentices []models.Apprentice
-	initializers.DB.Find(&apprentices)
+	initializers.DB.Order("Name ASC").Find(&apprentices)
 	// Respond with them
 	c.JSON(200, gin.H{
 		"apprentices": apprentices,
