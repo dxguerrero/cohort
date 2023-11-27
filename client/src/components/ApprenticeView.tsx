@@ -9,14 +9,15 @@ type ApprenticeViewProps = {
     Hub: string;
     Img: string;
   };
-  setAreApprenticesVisible: (b: boolean) => void;
+  
   fetchApprentice: (name: string) => void;
 };
 
 export const ApprenticeView = ({
   currentApprentice,
-}: // fetchApprentice,
-// setAreApprenticesVisible,
+  // fetchApprentice
+}: 
+
 ApprenticeViewProps) => {
   return (
     <Card

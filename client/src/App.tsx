@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { ApprenticeList } from "./components/ApprenticeList";
 import { ApprenticeView } from "./components/ApprenticeView";
-
+import { CreateForm } from "./components/CreateForm";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function App() {
   const [areApprenticesVisible, setAreApprenticesVisible] = useState(true);
   const [apprentices, setApprentices] = useState([]);
+  const [addingApprentice, setAddingApprentice] = useState(false);
+  const [post, setPost] = useState(false);
 
   type currentApprenticeTypes = {
     Name: string;
@@ -25,7 +28,7 @@ function App() {
       Img: "",
     });
 
-  const apiURL:string = "https://cohort-app.onrender.com"
+  const apiURL: string = "https://cohort-app.onrender.com";
 
   async function fetchApprentices() {
     try {
@@ -51,10 +54,16 @@ function App() {
     }
   }
 
+  function backToList(): void {
+    setAddingApprentice(false);
+    setAreApprenticesVisible(true);
+  }
+
   useEffect(() => {
     fetchApprentices();
     setAreApprenticesVisible(true);
-  }, []);
+    setPost(false);
+  }, [post]);
 
   return (
     <>
@@ -64,22 +73,53 @@ function App() {
             <Navbar.Brand>Cohort App</Navbar.Brand>
             {!areApprenticesVisible ? (
               <div className="d-flex justify-content-between">
-              <Button><span><i className="bi bi-pencil"></i></span></Button>
-              <Button
-                onClick={() => {
-                  setAreApprenticesVisible(true);
-                }}
-              >
-                <span className="bi bi-arrow-left-circle"></span>
-              </Button>
+                <Button>
+                  <span>
+                    <i className="bi bi-pencil"></i>
+                  </span>
+                </Button>
+                <Button onClick={backToList}>
+                  <span className="bi bi-arrow-left-circle"></span>
+                </Button>
               </div>
             ) : (
-              <Button>
-                <span><i className="bi bi-plus-circle"></i></span>
+              <Button
+                onClick={() => {
+                  setAddingApprentice(true);
+                }}
+              >
+                <span>
+                  <i className="bi bi-plus-circle"></i>
+                </span>
               </Button>
             )}
           </Container>
         </Navbar>
+        {addingApprentice && (
+          <Modal
+            show={addingApprentice}
+            onHide={() => {
+              setAddingApprentice(false);
+            }}
+          >
+            <Modal.Header className="modal-header">
+              <Modal.Title>Add Apprentice</Modal.Title>
+              <Button
+                onClick={() => {
+                  setAddingApprentice(false);
+                }}
+              >
+                <span className="bi bi-arrow-left-circle"></span>
+              </Button>
+            </Modal.Header>
+            <CreateForm
+              setAddingApprentice={setAddingApprentice}
+              setPost={setPost}
+              apiURL={apiURL}
+            />
+          </Modal>
+        )}
+
         {!areApprenticesVisible && currentApprentice ? (
           <>
             <ApprenticeView
