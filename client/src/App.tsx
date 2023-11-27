@@ -75,7 +75,7 @@ function App() {
               </div>
             ) : (
               <Button>
-                <span><i class="bi bi-plus-circle"></i></span>
+                <span><i className="bi bi-plus-circle"></i></span>
               </Button>
             )}
           </Container>
