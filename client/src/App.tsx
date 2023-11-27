@@ -125,7 +125,7 @@ function App() {
             <ApprenticeView
               currentApprentice={currentApprentice}
               fetchApprentice={fetchApprentice}
-              setAreApprenticesVisible={setAreApprenticesVisible}
+              
             />
           </>
         ) : (
