@@ -14,6 +14,7 @@ function App() {
   const [addingApprentice, setAddingApprentice] = useState(false);
   const [post, setPost] = useState(false);
   const [updatingApprentice, setUpdatingApprentice] = useState(false);
+  const [deletingApprentice, setDeletingApprentice] = useState(false);
 
   type currentApprenticeTypes = {
     Name: string;
@@ -35,7 +36,7 @@ function App() {
     try {
       const response = await fetch(`${apiURL}/`);
       const apprenticesData = await response.json();
-      console.log(apprenticesData);
+      
 
       setApprentices(apprenticesData.apprentices);
     } catch (err) {
@@ -47,7 +48,7 @@ function App() {
     try {
       const response = await fetch(`${apiURL}/apprentices/${name}`);
       const apprenticeData = await response.json();
-      console.log(apprenticeData);
+      
 
       setCurrentApprentice(apprenticeData.apprentice);
     } catch (err) {
@@ -72,12 +73,17 @@ function App() {
       <main>
         <Navbar bg="primary" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand>Cohort App</Navbar.Brand>
+            <Navbar.Brand>Cohort</Navbar.Brand>
             {!areApprenticesVisible ? (
               <div className="d-flex justify-content-between">
                 <Button onClick={()=>{setUpdatingApprentice(true)}}>
                   <span>
                     <i className="bi bi-pencil"></i>
+                  </span>
+                </Button>
+                <Button onClick={()=> {setDeletingApprentice(true)}}>
+                  <span>
+                    <i className="bi bi-trash3"></i>
                   </span>
                 </Button>
                 <Button onClick={backToList}>
@@ -131,7 +137,9 @@ function App() {
               updatingApprentice={updatingApprentice}
               setUpdatingApprentice={setUpdatingApprentice}
               apiURL={apiURL}
-              
+              deletingApprentice={deletingApprentice}
+              setDeletingApprentice={setDeletingApprentice}
+              setPost={setPost}
             />
           </>
         ) : (

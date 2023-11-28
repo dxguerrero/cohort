@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { UpdateForm } from './UpdateForm';
+import { DeleteModal } from './DeleteModal';
 
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
@@ -17,6 +18,9 @@ type ApprenticeViewProps = {
   updatingApprentice: boolean;
   setUpdatingApprentice: (b: boolean) => void;
   apiURL: string;
+  deletingApprentice: boolean;
+  setDeletingApprentice: (b: boolean) => void;
+  setPost: (b: boolean) => void;
 };
 
 export const ApprenticeView = ({
@@ -24,7 +28,10 @@ export const ApprenticeView = ({
   fetchApprentice,
   updatingApprentice,
   setUpdatingApprentice,
-  apiURL
+  apiURL,
+  deletingApprentice,
+  setDeletingApprentice,
+  setPost
 }: 
 
 ApprenticeViewProps) => {
@@ -41,7 +48,16 @@ ApprenticeViewProps) => {
       apiURL={apiURL}
       setUpdatingApprentice={setUpdatingApprentice}
       updatingApprentice={updatingApprentice}
-      
+      />
+    )}
+
+    {deletingApprentice && (
+      <DeleteModal
+        currentApprentice = {currentApprentice} 
+        apiURL={apiURL}
+        deletingApprentice
+        setDeletingApprentice={setDeletingApprentice}
+        setPost={setPost}
       />
     )}
     <Card
