@@ -26,6 +26,7 @@ In the second terminal:
 cd client
 npm install
 npm i --save react-bootstrap
+npm i bootstrap-icons
 npm run dev
 ```
 
