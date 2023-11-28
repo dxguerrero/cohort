@@ -1,4 +1,4 @@
-import { Modal, Button, Col, Row } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 type DeleteModalProps = {
   currentApprentice: {
