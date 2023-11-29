@@ -30,3 +30,12 @@ npm i bootstrap-icons
 npm run dev
 ```
 
+## Deployment
+
+The application is deployed on Render's free tier. 
+
+The back-end is deployed at https://cohort-app.onrender.com
+
+The front-end is deployed at https://cohort.onrender.com
+
+Please note that since the application's back-end is deployed on Render's free tier, it will spin down after periods of inactivity. When visiting or making API calls to the back-end, it may take a few minutes for Render to spin up the web-service.
